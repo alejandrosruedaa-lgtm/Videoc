@@ -133,10 +133,10 @@
       tl.to("#s4-h", { y: -160, opacity: 0, filter: "blur(14px)", duration: 0.3, ease: "power3.in" }, 5.62);
       tl.fromTo("#s4-n", { scale: 0.3, opacity: 0, filter: "blur(16px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "back.out(2)" }, 5.85);
       const n = { v: 0 }; const el = document.getElementById("s4-n");
-      tl.fromTo(n, { v: 0 }, { v: 89, duration: 1.0, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(n.v); } }, 5.95);
-      tl.to("#s4-n", { scale: 1.12, duration: 0.1 }, 6.95);
-      tl.to("#s4-n", { scale: 1, duration: 0.6, ease: "elastic.out(1,0.35)" }, 7.05);
-      const lt = [6.98, 7.66, 7.9, 8.0, 8.2];
+      tl.fromTo(n, { v: 0 }, { v: 89, duration: 1.0, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(n.v); } }, 6.15);
+      tl.to("#s4-n", { scale: 1.12, duration: 0.1 }, 7.15);
+      tl.to("#s4-n", { scale: 1, duration: 0.6, ease: "elastic.out(1,0.35)" }, 7.25);
+      const lt = [7.0, 7.72, 8.02, 8.1, 8.28];
       q("#s4-big .w").forEach((w, i) => tl.fromTo(w, { y: 60, opacity: 0, filter: "blur(12px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "back.out(1.8)" }, lt[i] - 0.12));
       // Cursor que hace clic en una barra
       tl.fromTo("#s4-cur", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 6.3);

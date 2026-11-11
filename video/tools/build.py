@@ -64,7 +64,7 @@ def sfx_tags():
         media_start = it[4] if len(it) > 4 else 0
         src = f"assets/audio/{name}.mp3"
         dur = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", os.path.join(ROOT, src)]).decode().strip()) - media_start
-        dur = round(min(dur, 3.0 if name != "riser" else 3.3, 57.2 - t), 3)
+        dur = round(min(dur, 3.0 if name != "riser" else 3.3, 57.45 - t), 3)
         ms = f' data-media-start="{media_start}"' if media_start else ""
         lane = next((k for k, e in enumerate(lanes) if e <= t), None)
         if lane is None: lanes.append(0); lane = len(lanes) - 1

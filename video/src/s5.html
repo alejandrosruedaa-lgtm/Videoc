@@ -58,7 +58,7 @@
       const tl = gsap.timeline({ paused: true });
       const q = (s) => document.querySelectorAll(s);
       tl.fromTo("#s5-panel", { x: 0, skewX: -14 }, { x: -2900, skewX: -14, duration: 0.45, ease: "power3.out" }, 0);
-      tl.fromTo("#s5-cam", { scale: 1.0 }, { scale: 1.04, duration: 6.25, ease: "none" }, 0);
+      tl.fromTo("#s5-cam", { scale: 1.0 }, { scale: 1.04, duration: 6.4, ease: "none" }, 0);
       const ht = [0.22, 0.34, 0.48];
       q("#s5-h .w").forEach((w, i) => tl.fromTo(w, { y: 70, opacity: 0, filter: "blur(14px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.34, ease: "back.out(1.8)" }, ht[i] - 0.06));
       // Mapa entra: subregiones aparecen desde el centro
@@ -92,7 +92,7 @@
       tl.fromTo("#s5-b1", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 5.0);
       tl.fromTo("#s5-b2", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 5.55);
       tl.to("#sr-oriente", { scale: 1.0, duration: 0.01 }, 5.6);
-      tl.to("#s5-cam", { scale: 1.12, filter: "blur(6px)", opacity: 0.0, duration: 0.25, ease: "power2.in" }, 6.25);
+      tl.to("#s5-cam", { scale: 1.12, filter: "blur(6px)", opacity: 0.0, duration: 0.25, ease: "power2.in" }, 6.4);
       window.__timelines["s5"] = tl;
     })();
   </script>
