@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1080, height=1920" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Poppins"; font-weight: 600; src: url("assets/fonts/poppins-latin-600-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Poppins"; font-weight: 800; src: url("assets/fonts/poppins-latin-800-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Poppins"; font-weight: 900; src: url("assets/fonts/poppins-latin-900-normal.woff2") format("woff2"); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0B5640; }
+    #vroot { position: relative; width: 1080px; height: 1920px; font-family: "Poppins", sans-serif; overflow: hidden; }
+    #vbg { position: absolute; inset: 0; background: radial-gradient(120% 70% at 50% 35%, #0f6a4f 0%, #0B5640 45%, #08432f 100%); }
+    #vbg::after { content: ""; position: absolute; inset: 0; opacity: .18;
+      background-image: radial-gradient(rgba(58,249,162,.55) 1.2px, transparent 1.6px); background-size: 36px 36px; }
+    #vlogo { position: absolute; left: 230px; top: 170px; width: 620px; height: 250px; background: #fff; border-radius: 28px 28px 28px 0;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 30px 70px rgba(3,30,21,.38); }
+    #vlogo img { width: 500px; }
+    #vtitle { position: absolute; left: 0; right: 0; top: 480px; text-align: center; color: #fff; font-weight: 800; font-size: 50px; line-height: 1.1; letter-spacing: -0.03em; }
+    #vtitle b { color: #3AF9A2; font-weight: 800; }
+    #vframe { position: absolute; left: 40px; top: 690px; width: 1000px; height: 563px; border-radius: 26px 26px 26px 0; overflow: hidden;
+      box-shadow: 0 40px 90px rgba(2,25,17,.55), 0 0 0 3px rgba(58,249,162,.55); }
+    #vvideo { position: absolute; left: 0; top: 0; width: 1000px; height: 563px; object-fit: cover; }
+    .vcap { position: absolute; left: 80px; right: 80px; top: 1340px; height: 300px; display: flex; align-items: flex-start; justify-content: center; text-align: center; }
+    .vcap span { color: #fff; font-weight: 800; font-size: 62px; line-height: 1.15; letter-spacing: -0.02em; text-shadow: 0 4px 18px rgba(0,0,0,.35); }
+    #vbar { position: absolute; left: 80px; right: 80px; top: 1760px; height: 10px; border-radius: 5px; background: rgba(255,255,255,.18); overflow: hidden; }
+    #vbarfill { width: 100%; height: 100%; background: #3AF9A2; border-radius: 5px; transform-origin: 0 50%; }
+  </style>
+</head>
+<body>
+  <div id="vroot" data-composition-id="vertical" data-start="0" data-duration="57.45" data-width="1080" data-height="1920">
+    <div id="vbg"></div>
+    <div id="vlogo"><img src="assets/img/logo_gobernacion.png" alt="Gobernación de Antioquia" /></div>
+    <div id="vtitle">Observatorio de Políticas<br />Públicas de <b>Antioquia</b></div>
+    <div id="vframe"><video id="vvideo" class="clip" src="assets/render/horizontal_sin_subtitulos.mp4" data-start="0" data-duration="57.45" data-track-index="1" data-has-audio="true" playsinline></video></div>
+    <div id="vc-01" class="clip vcap" data-start="0.12" data-duration="1.36" data-track-index="3"><span>¿Sabías que…</span></div>
+    <div id="vc-02" class="clip vcap" data-start="1.5" data-duration="1.74" data-track-index="3"><span>Antioquia tiene cuarenta y tres</span></div>
+    <div id="vc-03" class="clip vcap" data-start="3.26" data-duration="1.98" data-track-index="3"><span>políticas públicas vigentes?</span></div>
+    <div id="vc-04" class="clip vcap" data-start="5.26" data-duration="2.06" data-track-index="3"><span>Pero su información estaba dispersa:</span></div>
+    <div id="vc-05" class="clip vcap" data-start="7.34" data-duration="1.04" data-track-index="3"><span>en documentos,</span></div>
+    <div id="vc-06" class="clip vcap" data-start="8.4" data-duration="2.28" data-track-index="3"><span>tablas y secretarías distintas.</span></div>
+    <div id="vc-07" class="clip vcap" data-start="10.7" data-duration="1.48" data-track-index="3"><span>Por eso nace el Observatorio</span></div>
+    <div id="vc-08" class="clip vcap" data-start="12.2" data-duration="2.1" data-track-index="3"><span>de Políticas Públicas de Antioquia:</span></div>
+    <div id="vc-09" class="clip vcap" data-start="14.32" data-duration="1.88" data-track-index="3"><span>¡un solo lugar para consultar,</span></div>
+    <div id="vc-10" class="clip vcap" data-start="16.22" data-duration="1.34" data-track-index="3"><span>comparar y analizar!</span></div>
+    <div id="vc-11" class="clip vcap" data-start="17.58" data-duration="2.9" data-track-index="3"><span>¿Sabías que puedes explorarlas por tema?</span></div>
+    <div id="vc-12" class="clip vcap" data-start="20.5" data-duration="3.04" data-track-index="3"><span>Siete temas, de Poblaciones a Gobernanza.</span></div>
+    <div id="vc-13" class="clip vcap" data-start="23.56" data-duration="1.12" data-track-index="3"><span>Cuatro políticas ya</span></div>
+    <div id="vc-14" class="clip vcap" data-start="24.7" data-duration="1.56" data-track-index="3"><span>tienen tablero de datos:</span></div>
+    <div id="vc-15" class="clip vcap" data-start="26.28" data-duration="3.0" data-track-index="3"><span>Mujeres, Deporte, Familia y Turismo…</span></div>
+    <div id="vc-16" class="clip vcap" data-start="29.3" data-duration="1.1" data-track-index="3"><span>¡con ochenta y nueve</span></div>
+    <div id="vc-17" class="clip vcap" data-start="30.42" data-duration="2.0" data-track-index="3"><span>indicadores frente a sus metas!</span></div>
+    <div id="vc-18" class="clip vcap" data-start="32.44" data-duration="1.2" data-track-index="3"><span>¿Y tu subregión?</span></div>
+    <div id="vc-19" class="clip vcap" data-start="33.66" data-duration="1.04" data-track-index="3"><span>Ciento veinticinco</span></div>
+    <div id="vc-20" class="clip vcap" data-start="34.72" data-duration="2.14" data-track-index="3"><span>municipios y nueve subregiones,</span></div>
+    <div id="vc-21" class="clip vcap" data-start="36.88" data-duration="2.12" data-track-index="3"><span>comparados con todo Antioquia.</span></div>
+    <div id="vc-22" class="clip vcap" data-start="39.02" data-duration="2.04" data-track-index="3"><span>Un semáforo te muestra qué políticas</span></div>
+    <div id="vc-23" class="clip vcap" data-start="41.08" data-duration="2.42" data-track-index="3"><span>tienen completos sus tres instrumentos.</span></div>
+    <div id="vc-24" class="clip vcap" data-start="43.52" data-duration="0.9" data-track-index="3"><span>Y lo mejor:</span></div>
+    <div id="vc-25" class="clip vcap" data-start="44.44" data-duration="1.4" data-track-index="3"><span>cruza lo que hace el Gobierno</span></div>
+    <div id="vc-26" class="clip vcap" data-start="45.86" data-duration="1.7" data-track-index="3"><span>con la Encuesta de Calidad de Vida,</span></div>
+    <div id="vc-27" class="clip vcap" data-start="47.58" data-duration="1.96" data-track-index="3"><span>para decidir con evidencia.</span></div>
+    <div id="vc-28" class="clip vcap" data-start="49.56" data-duration="1.4" data-track-index="3"><span>Lo que se visualiza,</span></div>
+    <div id="vc-29" class="clip vcap" data-start="50.98" data-duration="1.7" data-track-index="3"><span>se puede comprender.</span></div>
+    <div id="vc-30" class="clip vcap" data-start="52.7" data-duration="1.4" data-track-index="3"><span>Lo que se comprende,</span></div>
+    <div id="vc-31" class="clip vcap" data-start="54.12" data-duration="1.44" data-track-index="3"><span>se puede mejorar.</span></div>
+    <div id="vbar"><div id="vbarfill"></div></div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#vbarfill", { scaleX: 0 }, { scaleX: 1, duration: 57.45, ease: "none" }, 0);
+    tl.fromTo("#vlogo", { scale: 1 }, { scale: 1.04, duration: 57.45, ease: "sine.inOut" }, 0);
+    document.querySelectorAll(".vcap").forEach((c) => {
+      tl.fromTo(c.querySelector("span"), { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "back.out(2)" }, parseFloat(c.dataset.start));
+    });
+    window.__timelines["vertical"] = tl;
+  </script>
+</body>
+</html>
