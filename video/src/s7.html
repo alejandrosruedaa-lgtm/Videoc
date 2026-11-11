@@ -1,0 +1,66 @@
+<template>
+  <style>
+    /*SHARED*/
+    #s7-tag { left: 200px; top: 110px; font-size: 58px; }
+    .s7-c { top: 280px; width: 440px; height: 360px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 26px; text-align: center; }
+    .s7-c .iconc { width: 130px; height: 130px; }
+    .s7-c b { font-size: 46px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+    .s7-c small { font-size: 28px; font-weight: 500; color: #4b5d55; line-height: 1.25; }
+    #s7-a { left: 200px; } #s7-b { left: 740px; }
+    #s7-c { left: 1280px; background: #3AF9A2; }
+    #s7-c b { color: #0B5640; }
+    #s7-mini { width: 190px; height: 190px; }
+    #s7-mini .border path { fill: #0B5640; stroke: #0B5640; stroke-width: 2; }
+    .s7-op { position: absolute; top: 420px; width: 84px; height: 84px; border-radius: 50%; background: #0B5640; border: 4px solid #3AF9A2; color: #3AF9A2; display: flex; align-items: center; justify-content: center; }
+    .s7-op svg { width: 46px; height: 46px; stroke-width: 3; }
+    #s7-plus { left: 648px; } #s7-eq { left: 1188px; }
+    #s7-wave { position: absolute; left: 1450px; top: 350px; width: 100px; height: 100px; border-radius: 50%; border: 5px solid #0B5640; opacity: 0; }
+    .s7-ph { position: absolute; width: 230px; height: 190px; background: #fff; padding: 10px; border-radius: 16px 16px 16px 0; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+    .s7-ph img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 10px 0; display: block; }
+    #s7-p1 { left: 1560px; top: 170px; } #s7-p2 { left: 1220px; top: 180px; }
+    #s7-h { position: absolute; left: 0; right: 0; top: 700px; text-align: center; font-size: 112px; }
+  </style>
+  <div id="root" data-composition-id="s7" data-width="1920" data-height="1080">
+    <div class="bg"></div>
+    <div id="s7-cam" class="cam">
+      <div class="glow" style="left:1050px;top:0px"></div>
+      <div id="s7-tag" class="tag">¡Y lo mejor!</div>
+      <div id="s7-p2" class="s7-ph"><img src="assets/fotos/tren.jpg" alt="" /></div>
+      <div id="s7-p1" class="s7-ph"><img src="assets/fotos/montana.jpg" alt="" /></div>
+      <div id="s7-a" class="card s7-c"><div class="iconc"><i data-icon="landmark"></i></div><b>Política</b><small>Lo que hace<br />el Gobierno</small></div>
+      <div id="s7-plus" class="s7-op"><i data-icon="plus"></i></div>
+      <div id="s7-b" class="card s7-c"><div class="iconc"><i data-icon="house-heart"></i></div><b>Calidad de Vida</b><small>Encuesta de<br />Calidad de Vida</small></div>
+      <div id="s7-eq" class="s7-op"><i data-icon="equal"></i></div>
+      <div id="s7-c" class="card s7-c"><i data-map="mini" id="s7-mini"></i><b>Impacto en<br />el territorio</b></div>
+      <div id="s7-wave"></div>
+      <h2 id="s7-h" class="h"><span class="w">Decide</span> <span class="w">con</span> <span class="w mint">evidencia.</span></h2>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelectorAll(s);
+      tl.fromTo("#s7-cam", { scale: 1.0, x: 0 }, { scale: 1.07, x: -20, duration: 6.1, ease: "none" }, 0);
+      tl.fromTo("#s7-tag", { scale: 0, rotation: -30 }, { scale: 1, rotation: -6, duration: 0.5, ease: "back.out(2.8)" }, 0.06);
+      tl.to("#s7-tag", { rotation: -3, duration: 1.4, ease: "sine.inOut" }, 0.6);
+      tl.fromTo("#s7-a", { x: -700, rotation: -20, opacity: 1 }, { x: 0, rotation: -2, duration: 0.55, ease: "back.out(1.6)" }, 1.05);
+      tl.fromTo("#s7-plus", { scale: 0, rotation: -180 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, 2.5);
+      tl.fromTo("#s7-b", { y: -800, rotation: 18, opacity: 1 }, { y: 0, rotation: 2, duration: 0.55, ease: "back.out(1.6)" }, 2.65);
+      tl.fromTo("#s7-eq", { scale: 0, rotation: 180 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, 3.85);
+      tl.fromTo("#s7-c", { scale: 0, rotation: 12, opacity: 1 }, { scale: 1, rotation: 0, duration: 0.55, ease: "back.out(2)" }, 4.0);
+      tl.fromTo(["#s7-p1", "#s7-p2"], { y: 220, x: (i) => [-150, 150][i], rotation: 0, opacity: 0, scale: 0.6 }, { y: 0, x: 0, rotation: (i) => [8, -9][i], opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.8)", stagger: 0.1 }, 4.2);
+      // El mapa late
+      for (let k = 0; k < 3; k++) {
+        tl.fromTo("#s7-mini", { scale: 1 }, { keyframes: [{ scale: 1.1, duration: 0.15, ease: "power2.out" }, { scale: 1, duration: 0.35, ease: "power2.in" }], immediateRender: false }, 4.55 + k * 0.5);
+        tl.fromTo("#s7-wave", { scale: 0.6, opacity: 0.8 }, { scale: 2.4, opacity: 0, duration: 0.5, ease: "power2.out", immediateRender: false }, 4.55 + k * 0.5);
+      }
+      const ht = [4.58, 5.14, 5.3];
+      q("#s7-h .w").forEach((w, i) => tl.fromTo(w, { y: 80, opacity: 0, filter: "blur(16px)", scale: 0.8 }, { y: 0, opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.36, ease: "back.out(2.2)" }, ht[i] - 0.1));
+      tl.to("#s7-h .mint", { scale: 1.12, duration: 0.1 }, 5.55);
+      tl.to("#s7-h .mint", { scale: 1, duration: 0.5, ease: "elastic.out(1,0.4)" }, 5.65);
+      tl.to(["#s7-a", "#s7-b", "#s7-c", "#s7-plus", "#s7-eq", "#s7-p1", "#s7-p2", "#s7-tag"], { y: -60, opacity: 0, filter: "blur(10px)", duration: 0.25, stagger: 0.02, ease: "power2.in" }, 5.82);
+      tl.to("#s7-h", { y: -40, opacity: 0, duration: 0.2, ease: "power2.in" }, 5.92);
+      window.__timelines["s7"] = tl;
+    })();
+  </script>
+</template>

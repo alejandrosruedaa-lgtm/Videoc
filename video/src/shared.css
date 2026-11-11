@@ -1,0 +1,53 @@
+
+/* Identidad: Manual de Identidad Visual — Gobernación de Antioquia.
+   Poppins; #0B5640 / #08432f fondo, #018D38 botones y barras, menta #3AF9A2 acento, blanco.
+   Contenedores blancos con una esquina recta (abajo-izquierda), íconos de línea en círculos menta. */
+@font-face { font-family: "Poppins"; font-weight: 400; src: url("assets/fonts/poppins-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 500; src: url("assets/fonts/poppins-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 600; src: url("assets/fonts/poppins-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 700; src: url("assets/fonts/poppins-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 800; src: url("assets/fonts/poppins-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 900; src: url("assets/fonts/poppins-latin-900-normal.woff2") format("woff2"); }
+#root {
+  --vo: #0B5640; --vo2: #08432f; --v: #018D38; --menta: #3AF9A2; --blanco: #ffffff;
+  --az: #3561AB; --azc: #8FCAF0; --na: #F28E18; --mo: #8B4A97; --do: #B0942B;
+  --rojo: #c0392b; --amarillo: #F2C318; --tx: #0B5640;
+  position: absolute; inset: 0; overflow: hidden;
+  font-family: "Poppins", sans-serif; color: #fff;
+}
+#root * { box-sizing: border-box; margin: 0; padding: 0; }
+.bg { position: absolute; inset: 0;
+  background: radial-gradient(120% 90% at 30% 20%, #0f6a4f 0%, #0B5640 45%, #08432f 100%); }
+.bg::after { content: ""; position: absolute; inset: 0; opacity: .18;
+  background-image: radial-gradient(rgba(58,249,162,.55) 1.2px, transparent 1.6px); background-size: 36px 36px; }
+.glow { position: absolute; width: 900px; height: 900px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,249,162,.22) 0%, rgba(58,249,162,0) 65%); pointer-events: none; }
+.cam { position: absolute; inset: 0; transform-origin: 50% 50%; }
+.mint { color: var(--menta); }
+.w { display: inline-block; will-change: transform, filter; }
+.h { font-weight: 900; line-height: 1.02; letter-spacing: -0.035em; color: #fff; }
+.tag { position: absolute; display: inline-block; background: var(--menta); color: var(--vo);
+  font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase;
+  padding: 10px 30px 12px; border-radius: 18px 18px 18px 0;
+  box-shadow: 0 18px 40px rgba(0,0,0,.28), 0 0 60px rgba(58,249,162,.35); }
+.card { position: absolute; background: #fff; color: var(--vo);
+  border-radius: 28px 28px 28px 0; box-shadow: 0 30px 70px rgba(3,30,21,.38); }
+.iconc { display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  background: var(--menta); color: var(--vo); flex: none; }
+.iconc svg { width: 56%; height: 56%; stroke-width: 2.2; }
+.pill { display: inline-flex; align-items: center; gap: 18px; background: var(--v); color: #fff;
+  font-weight: 700; border-radius: 999px; padding: 18px 40px; box-shadow: 0 16px 40px rgba(0,0,0,.25); }
+.lightline { position: absolute; top: -120px; width: 16px; height: 1320px; background: var(--menta);
+  border-radius: 8px; box-shadow: 0 0 40px 10px rgba(58,249,162,.75), 0 0 140px 40px rgba(58,249,162,.35); }
+.panel { position: absolute; top: -200px; height: 1480px; width: 2800px; transform-origin: 50% 50%; }
+/* muro de documentos */
+.wall { position: absolute; left: -260px; top: -420px; width: 2440px; height: 1920px; display: flex; gap: 34px;
+  transform: rotate(-9deg); }
+.wall-col { display: flex; flex-direction: column; gap: 30px; width: 300px; flex: none; }
+.doc { background: #fff; border-radius: 18px 18px 18px 0; height: 170px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; }
+.doc.tall { height: 250px; }
+.doc b { display: block; height: 12px; border-radius: 6px; background: #0B5640; opacity: .35; }
+.doc-k { align-self: flex-start; font-size: 18px; font-weight: 800; color: var(--vo); background: var(--menta); padding: 2px 12px; border-radius: 8px; margin-bottom: 4px; }
+.cursor { position: absolute; width: 64px; height: 64px; color: #fff; filter: drop-shadow(0 6px 10px rgba(0,0,0,.4)); }
+.cursor svg { width: 100%; height: 100%; fill: #0B5640; stroke: #fff; stroke-width: 1.6; }
+.ripple { position: absolute; width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--menta); }

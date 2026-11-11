@@ -1,0 +1,56 @@
+<template>
+  <style>
+    /*SHARED*/
+    #s8-bg { position: absolute; inset: 0; background: #0B5640; }
+    .s8-l { position: absolute; left: 0; right: 0; text-align: center; font-size: 100px; transform-origin: 50% 50%; }
+    #s8-a1 { top: 300px; } #s8-a2 { top: 415px; }
+    #s8-b1 { top: 330px; } #s8-b2 { top: 445px; }
+    #s8-logo { left: 590px; top: 470px; width: 740px; height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    #s8-logo img { width: 600px; }
+    #s8-shine { position: absolute; top: -60px; left: -200px; width: 90px; height: 440px; background: linear-gradient(90deg, rgba(58,249,162,0), rgba(58,249,162,.55), rgba(58,249,162,0)); }
+    #s8-btn { position: absolute; left: 0; right: 0; top: 806px; display: flex; justify-content: center; }
+    #s8-btn .pill { font-size: 40px; padding: 20px 46px; }
+    #s8-btn svg { width: 40px; height: 40px; stroke-width: 2.6; }
+    #s8-line { left: -60px; }
+  </style>
+  <div id="root" data-composition-id="s8" data-width="1920" data-height="1080">
+    <div id="s8-bg"></div>
+    <div id="s8-cam" class="cam">
+      <div class="glow" style="left:510px;top:60px;width:900px;height:900px"></div>
+      <h2 id="s8-a1" class="h s8-l"><span class="w">Lo</span> <span class="w">que</span> <span class="w">se</span> <span class="w">visualiza,</span></h2>
+      <h2 id="s8-a2" class="h s8-l"><span class="w">se</span> <span class="w">puede</span> <span class="w mint">comprender.</span></h2>
+      <h2 id="s8-b1" class="h s8-l"><span class="w">Lo</span> <span class="w">que</span> <span class="w">se</span> <span class="w">comprende,</span></h2>
+      <h2 id="s8-b2" class="h s8-l"><span class="w">se</span> <span class="w">puede</span> <span class="w mint">mejorar.</span></h2>
+      <div id="s8-logo" class="card"><img src="assets/img/logo_gobernacion.png" alt="Gobernación de Antioquia" /><div id="s8-shine"></div></div>
+      <div id="s8-btn"><div class="pill">Explora el Observatorio <i data-icon="arrow-right"></i></div></div>
+    </div>
+    <div id="s8-line" class="lightline"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelectorAll(s);
+      tl.fromTo("#s8-cam", { scale: 1.0 }, { scale: 1.06, duration: 8, ease: "none" }, 0);
+      tl.fromTo("#s8-line", { x: 0, opacity: 1 }, { x: 2080, duration: 0.6, ease: "power2.inOut" }, 0);
+      tl.to("#s8-line", { opacity: 0, duration: 0.1 }, 0.6);
+      // Slogan palabra por palabra (tono pausado y solemne)
+      const wIn = (sel, times) => q(sel + " .w").forEach((w, i) => tl.fromTo(w, { y: 50, opacity: 0, filter: "blur(16px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, times[i] - 0.1));
+      wIn("#s8-a1", [0.26, 0.38, 0.52, 0.64]);
+      wIn("#s8-a2", [1.62, 1.8, 2.1]);
+      tl.to(["#s8-a1", "#s8-a2"], { y: -190, scale: 0.62, opacity: 0.55, duration: 0.6, ease: "power3.inOut" }, 3.0);
+      wIn("#s8-b1", [3.32, 3.42, 3.54, 3.68]);
+      wIn("#s8-b2", [4.68, 4.88, 5.22]);
+      tl.to("#s8-b2 .mint", { scale: 1.1, duration: 0.15 }, 5.5);
+      tl.to("#s8-b2 .mint", { scale: 1, duration: 0.7, ease: "elastic.out(1,0.35)" }, 5.65);
+      // Cierre: logo en tarjeta blanca + botón
+      tl.to(["#s8-a1", "#s8-a2"], { y: -330, opacity: 0, duration: 0.5, ease: "power3.in" }, 5.85);
+      tl.to("#s8-b1", { y: -230, scale: 0.6, duration: 0.6, ease: "power3.inOut" }, 5.9);
+      tl.to("#s8-b2", { y: -260, scale: 0.6, duration: 0.6, ease: "power3.inOut" }, 5.9);
+      tl.fromTo("#s8-logo", { y: 120, scale: 0.5, rotationX: 50, opacity: 0 }, { y: -20, scale: 1, rotationX: 0, opacity: 1, duration: 0.7, ease: "back.out(1.6)" }, 6.0);
+      tl.fromTo("#s8-shine", { x: 0 }, { x: 1100, duration: 0.8, ease: "power2.inOut" }, 6.55);
+      tl.fromTo("#s8-btn .pill", { scale: 0, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(2.6)" }, 6.1);
+      tl.to("#s8-btn .pill", { scale: 1.05, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 6.8);
+      window.__timelines["s8"] = tl;
+    })();
+  </script>
+</template>

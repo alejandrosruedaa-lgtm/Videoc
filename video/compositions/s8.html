@@ -1,0 +1,109 @@
+<template>
+  <style>
+    
+/* Identidad: Manual de Identidad Visual — Gobernación de Antioquia.
+   Poppins; #0B5640 / #08432f fondo, #018D38 botones y barras, menta #3AF9A2 acento, blanco.
+   Contenedores blancos con una esquina recta (abajo-izquierda), íconos de línea en círculos menta. */
+@font-face { font-family: "Poppins"; font-weight: 400; src: url("assets/fonts/poppins-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 500; src: url("assets/fonts/poppins-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 600; src: url("assets/fonts/poppins-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 700; src: url("assets/fonts/poppins-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 800; src: url("assets/fonts/poppins-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 900; src: url("assets/fonts/poppins-latin-900-normal.woff2") format("woff2"); }
+#root {
+  --vo: #0B5640; --vo2: #08432f; --v: #018D38; --menta: #3AF9A2; --blanco: #ffffff;
+  --az: #3561AB; --azc: #8FCAF0; --na: #F28E18; --mo: #8B4A97; --do: #B0942B;
+  --rojo: #c0392b; --amarillo: #F2C318; --tx: #0B5640;
+  position: absolute; inset: 0; overflow: hidden;
+  font-family: "Poppins", sans-serif; color: #fff;
+}
+#root * { box-sizing: border-box; margin: 0; padding: 0; }
+.bg { position: absolute; inset: 0;
+  background: radial-gradient(120% 90% at 30% 20%, #0f6a4f 0%, #0B5640 45%, #08432f 100%); }
+.bg::after { content: ""; position: absolute; inset: 0; opacity: .18;
+  background-image: radial-gradient(rgba(58,249,162,.55) 1.2px, transparent 1.6px); background-size: 36px 36px; }
+.glow { position: absolute; width: 900px; height: 900px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,249,162,.22) 0%, rgba(58,249,162,0) 65%); pointer-events: none; }
+.cam { position: absolute; inset: 0; transform-origin: 50% 50%; }
+.mint { color: var(--menta); }
+.w { display: inline-block; will-change: transform, filter; }
+.h { font-weight: 900; line-height: 1.02; letter-spacing: -0.035em; color: #fff; }
+.tag { position: absolute; display: inline-block; background: var(--menta); color: var(--vo);
+  font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase;
+  padding: 10px 30px 12px; border-radius: 18px 18px 18px 0;
+  box-shadow: 0 18px 40px rgba(0,0,0,.28), 0 0 60px rgba(58,249,162,.35); }
+.card { position: absolute; background: #fff; color: var(--vo);
+  border-radius: 28px 28px 28px 0; box-shadow: 0 30px 70px rgba(3,30,21,.38); }
+.iconc { display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  background: var(--menta); color: var(--vo); flex: none; }
+.iconc svg { width: 56%; height: 56%; stroke-width: 2.2; }
+.pill { display: inline-flex; align-items: center; gap: 18px; background: var(--v); color: #fff;
+  font-weight: 700; border-radius: 999px; padding: 18px 40px; box-shadow: 0 16px 40px rgba(0,0,0,.25); }
+.lightline { position: absolute; top: -120px; width: 16px; height: 1320px; background: var(--menta);
+  border-radius: 8px; box-shadow: 0 0 40px 10px rgba(58,249,162,.75), 0 0 140px 40px rgba(58,249,162,.35); }
+.panel { position: absolute; top: -200px; height: 1480px; width: 2800px; transform-origin: 50% 50%; }
+/* muro de documentos */
+.wall { position: absolute; left: -260px; top: -420px; width: 2440px; height: 1920px; display: flex; gap: 34px;
+  transform: rotate(-9deg); }
+.wall-col { display: flex; flex-direction: column; gap: 30px; width: 300px; flex: none; }
+.doc { background: #fff; border-radius: 18px 18px 18px 0; height: 170px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; }
+.doc.tall { height: 250px; }
+.doc b { display: block; height: 12px; border-radius: 6px; background: #0B5640; opacity: .35; }
+.doc-k { align-self: flex-start; font-size: 18px; font-weight: 800; color: var(--vo); background: var(--menta); padding: 2px 12px; border-radius: 8px; margin-bottom: 4px; }
+.cursor { position: absolute; width: 64px; height: 64px; color: #fff; filter: drop-shadow(0 6px 10px rgba(0,0,0,.4)); }
+.cursor svg { width: 100%; height: 100%; fill: #0B5640; stroke: #fff; stroke-width: 1.6; }
+.ripple { position: absolute; width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--menta); }
+
+    #s8-bg { position: absolute; inset: 0; background: #0B5640; }
+    .s8-l { position: absolute; left: 0; right: 0; text-align: center; font-size: 100px; transform-origin: 50% 50%; }
+    #s8-a1 { top: 300px; } #s8-a2 { top: 415px; }
+    #s8-b1 { top: 330px; } #s8-b2 { top: 445px; }
+    #s8-logo { left: 590px; top: 470px; width: 740px; height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    #s8-logo img { width: 600px; }
+    #s8-shine { position: absolute; top: -60px; left: -200px; width: 90px; height: 440px; background: linear-gradient(90deg, rgba(58,249,162,0), rgba(58,249,162,.55), rgba(58,249,162,0)); }
+    #s8-btn { position: absolute; left: 0; right: 0; top: 806px; display: flex; justify-content: center; }
+    #s8-btn .pill { font-size: 40px; padding: 20px 46px; }
+    #s8-btn svg { width: 40px; height: 40px; stroke-width: 2.6; }
+    #s8-line { left: -60px; }
+  </style>
+  <div id="root" data-composition-id="s8" data-width="1920" data-height="1080">
+    <div id="s8-bg"></div>
+    <div id="s8-cam" class="cam">
+      <div class="glow" style="left:510px;top:60px;width:900px;height:900px"></div>
+      <h2 id="s8-a1" class="h s8-l"><span class="w">Lo</span> <span class="w">que</span> <span class="w">se</span> <span class="w">visualiza,</span></h2>
+      <h2 id="s8-a2" class="h s8-l"><span class="w">se</span> <span class="w">puede</span> <span class="w mint">comprender.</span></h2>
+      <h2 id="s8-b1" class="h s8-l"><span class="w">Lo</span> <span class="w">que</span> <span class="w">se</span> <span class="w">comprende,</span></h2>
+      <h2 id="s8-b2" class="h s8-l"><span class="w">se</span> <span class="w">puede</span> <span class="w mint">mejorar.</span></h2>
+      <div id="s8-logo" class="card"><img src="assets/img/logo_gobernacion.png" alt="Gobernación de Antioquia" /><div id="s8-shine"></div></div>
+      <div id="s8-btn"><div class="pill">Explora el Observatorio <svg  data-icon="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /></svg></div></div>
+    </div>
+    <div id="s8-line" class="lightline"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelectorAll(s);
+      tl.fromTo("#s8-cam", { scale: 1.0 }, { scale: 1.06, duration: 8, ease: "none" }, 0);
+      tl.fromTo("#s8-line", { x: 0, opacity: 1 }, { x: 2080, duration: 0.6, ease: "power2.inOut" }, 0);
+      tl.to("#s8-line", { opacity: 0, duration: 0.1 }, 0.6);
+      // Slogan palabra por palabra (tono pausado y solemne)
+      const wIn = (sel, times) => q(sel + " .w").forEach((w, i) => tl.fromTo(w, { y: 50, opacity: 0, filter: "blur(16px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, times[i] - 0.1));
+      wIn("#s8-a1", [0.26, 0.38, 0.52, 0.64]);
+      wIn("#s8-a2", [1.62, 1.8, 2.1]);
+      tl.to(["#s8-a1", "#s8-a2"], { y: -190, scale: 0.62, opacity: 0.55, duration: 0.6, ease: "power3.inOut" }, 3.0);
+      wIn("#s8-b1", [3.32, 3.42, 3.54, 3.68]);
+      wIn("#s8-b2", [4.68, 4.88, 5.22]);
+      tl.to("#s8-b2 .mint", { scale: 1.1, duration: 0.15 }, 5.5);
+      tl.to("#s8-b2 .mint", { scale: 1, duration: 0.7, ease: "elastic.out(1,0.35)" }, 5.65);
+      // Cierre: logo en tarjeta blanca + botón
+      tl.to(["#s8-a1", "#s8-a2"], { y: -330, opacity: 0, duration: 0.5, ease: "power3.in" }, 5.85);
+      tl.to("#s8-b1", { y: -230, scale: 0.6, duration: 0.6, ease: "power3.inOut" }, 5.9);
+      tl.to("#s8-b2", { y: -260, scale: 0.6, duration: 0.6, ease: "power3.inOut" }, 5.9);
+      tl.fromTo("#s8-logo", { y: 120, scale: 0.5, rotationX: 50, opacity: 0 }, { y: -20, scale: 1, rotationX: 0, opacity: 1, duration: 0.7, ease: "back.out(1.6)" }, 6.0);
+      tl.fromTo("#s8-shine", { x: 0 }, { x: 1100, duration: 0.8, ease: "power2.inOut" }, 6.55);
+      tl.fromTo("#s8-btn .pill", { scale: 0, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(2.6)" }, 6.1);
+      tl.to("#s8-btn .pill", { scale: 1.05, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 6.8);
+      window.__timelines["s8"] = tl;
+    })();
+  </script>
+</template>

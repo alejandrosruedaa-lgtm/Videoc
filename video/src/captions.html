@@ -1,0 +1,51 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    .cap { position: absolute; left: 0; right: 0; bottom: 96px; display: flex; justify-content: center; }
+    .cap span { font-family: "Poppins", sans-serif; font-weight: 500; font-size: 34px; line-height: 1.25; color: #fff;
+      background: rgba(8, 67, 47, 0.62); padding: 8px 22px 10px; border-radius: 14px 14px 14px 0; letter-spacing: -0.005em; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1920" data-height="1080">
+      <div id="cap-01" class="clip cap" data-start="0.08" data-duration="1.28" data-track-index="0"><span>¿Sabías que…</span></div>
+      <div id="cap-02" class="clip cap" data-start="1.38" data-duration="1.68" data-track-index="0"><span>Antioquia tiene cuarenta y una</span></div>
+      <div id="cap-03" class="clip cap" data-start="3.08" data-duration="1.98" data-track-index="0"><span>políticas públicas vigentes?</span></div>
+      <div id="cap-04" class="clip cap" data-start="5.08" data-duration="2.1" data-track-index="0"><span>Pero su información estaba dispersa:</span></div>
+      <div id="cap-05" class="clip cap" data-start="7.2" data-duration="1.08" data-track-index="0"><span>en documentos,</span></div>
+      <div id="cap-06" class="clip cap" data-start="8.3" data-duration="2.28" data-track-index="0"><span>tablas y secretarías distintas.</span></div>
+      <div id="cap-07" class="clip cap" data-start="10.6" data-duration="1.5" data-track-index="0"><span>Por eso nace el Observatorio</span></div>
+      <div id="cap-08" class="clip cap" data-start="12.12" data-duration="2.14" data-track-index="0"><span>de Políticas Públicas de Antioquia:</span></div>
+      <div id="cap-09" class="clip cap" data-start="14.28" data-duration="1.84" data-track-index="0"><span>¡un solo lugar para consultar,</span></div>
+      <div id="cap-10" class="clip cap" data-start="16.14" data-duration="1.36" data-track-index="0"><span>comparar y analizar!</span></div>
+      <div id="cap-11" class="clip cap" data-start="17.52" data-duration="2.94" data-track-index="0"><span>¿Sabías que puedes explorarlas por tema?</span></div>
+      <div id="cap-12" class="clip cap" data-start="20.48" data-duration="3.1" data-track-index="0"><span>Siete temas, de Poblaciones a Gobernanza.</span></div>
+      <div id="cap-13" class="clip cap" data-start="23.6" data-duration="1.12" data-track-index="0"><span>Cuatro políticas ya</span></div>
+      <div id="cap-14" class="clip cap" data-start="24.74" data-duration="1.56" data-track-index="0"><span>tienen tablero de datos:</span></div>
+      <div id="cap-15" class="clip cap" data-start="26.32" data-duration="2.96" data-track-index="0"><span>Mujeres, Deporte, Familia y Turismo…</span></div>
+      <div id="cap-16" class="clip cap" data-start="29.3" data-duration="1.08" data-track-index="0"><span>¡con ochenta y nueve</span></div>
+      <div id="cap-17" class="clip cap" data-start="30.4" data-duration="2.02" data-track-index="0"><span>indicadores frente a sus metas!</span></div>
+      <div id="cap-18" class="clip cap" data-start="32.44" data-duration="1.28" data-track-index="0"><span>¿Y tu subregión?</span></div>
+      <div id="cap-19" class="clip cap" data-start="33.74" data-duration="0.96" data-track-index="0"><span>Ciento veinticinco</span></div>
+      <div id="cap-20" class="clip cap" data-start="34.72" data-duration="2.06" data-track-index="0"><span>municipios y nueve subregiones,</span></div>
+      <div id="cap-21" class="clip cap" data-start="36.8" data-duration="2.06" data-track-index="0"><span>comparados con todo Antioquia.</span></div>
+      <div id="cap-22" class="clip cap" data-start="38.88" data-duration="1.96" data-track-index="0"><span>Un semáforo te muestra qué políticas</span></div>
+      <div id="cap-23" class="clip cap" data-start="40.86" data-duration="2.28" data-track-index="0"><span>tienen completos sus tres instrumentos.</span></div>
+      <div id="cap-24" class="clip cap" data-start="43.16" data-duration="1.02" data-track-index="0"><span>Y lo mejor:</span></div>
+      <div id="cap-25" class="clip cap" data-start="44.2" data-duration="1.4" data-track-index="0"><span>cruza lo que hace el Gobierno</span></div>
+      <div id="cap-26" class="clip cap" data-start="45.62" data-duration="1.76" data-track-index="0"><span>con la Encuesta de Calidad de Vida,</span></div>
+      <div id="cap-27" class="clip cap" data-start="47.4" data-duration="1.96" data-track-index="0"><span>para decidir con evidencia.</span></div>
+      <div id="cap-28" class="clip cap" data-start="49.38" data-duration="1.34" data-track-index="0"><span>Lo que se visualiza,</span></div>
+      <div id="cap-29" class="clip cap" data-start="50.74" data-duration="1.68" data-track-index="0"><span>se puede comprender.</span></div>
+      <div id="cap-30" class="clip cap" data-start="52.44" data-duration="1.34" data-track-index="0"><span>Lo que se comprende,</span></div>
+      <div id="cap-31" class="clip cap" data-start="53.8" data-duration="1.46" data-track-index="0"><span>se puede mejorar.</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      document.querySelectorAll("#captions .cap span, [data-composition-id='captions'] .cap span").forEach((el) => {
+        const c = el.parentElement; const s = parseFloat(c.dataset.start);
+        tl.fromTo(el, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.12, ease: "power2.out" }, s);
+      });
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

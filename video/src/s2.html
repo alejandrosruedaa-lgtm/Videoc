@@ -1,0 +1,113 @@
+<template>
+  <style>
+    /*SHARED*/
+    #s2-chaos { position: absolute; inset: 0; }
+    .s2-k { position: absolute; width: 270px; }
+    #s2-line { left: -60px; }
+    #s2-browser { position: absolute; left: 290px; top: 110px; width: 1340px; height: 790px; border-radius: 26px 26px 26px 0;
+      background: #fff; overflow: hidden; box-shadow: 0 50px 120px rgba(2,25,17,.55), 0 0 0 2px rgba(58,249,162,.4); transform-origin: 50% 40%; }
+    #s2-chrome { height: 54px; background: #eef2f0; display: flex; align-items: center; gap: 12px; padding: 0 22px; }
+    #s2-chrome i, #s2-chrome .dot { width: 15px; height: 15px; border-radius: 50%; background: #c9d3ce; display: block; }
+    #s2-chrome .tab { margin-left: 22px; background: #fff; border-radius: 12px 12px 0 0; height: 40px; align-self: flex-end;
+      padding: 9px 22px; font-size: 16px; font-weight: 600; color: #0B5640; }
+    #s2-nav { height: 92px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; border-bottom: 1px solid #d9e1dc; }
+    #s2-nav img { height: 62px; }
+    #s2-nav .links { display: flex; gap: 30px; font-size: 18px; font-weight: 600; color: #0B5640; align-items: center; }
+    #s2-nav .links .on { background: #0B5640; color: #fff; border-radius: 999px; padding: 6px 18px; }
+    #s2-hero { position: absolute; left: 0; right: 0; top: 146px; height: 380px; background: #0B5640; padding: 46px 56px; }
+    #s2-over { font-size: 16px; font-weight: 700; color: #3AF9A2; letter-spacing: .08em; }
+    #s2-title { margin-top: 14px; font-size: 62px; font-weight: 800; line-height: 1.06; letter-spacing: -0.03em; color: #fff; width: 820px; }
+    #s2-search { margin-top: 30px; width: 640px; height: 66px; background: #fff; border-radius: 999px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 8px 0 30px; font-size: 19px; color: #6b7a73; }
+    #s2-search b { background: #018D38; color: #fff; border-radius: 999px; padding: 12px 30px; font-size: 19px; }
+    #s2-logocard { position: absolute; right: 56px; top: 190px; width: 380px; height: 196px; display: flex; align-items: center; justify-content: center; }
+    #s2-logocard img { width: 300px; }
+    #s2-stats { position: absolute; left: 56px; right: 56px; top: 560px; height: 170px; display: flex; }
+    #s2-stats .st { flex: 1; padding: 30px 34px; border-right: 1px solid #d9e1dc; }
+    #s2-stats .st:last-child { border-right: 0; }
+    #s2-stats .n { font-size: 70px; font-weight: 800; color: #018D38; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    #s2-stats .l { margin-top: 10px; font-size: 20px; color: #3d4f47; font-weight: 500; }
+    #s2-head { position: absolute; left: 1170px; top: 190px; font-size: 118px; width: 640px; }
+    .s2-p { position: absolute; left: 1170px; font-size: 64px; font-weight: 800; padding: 16px 44px 16px 16px; gap: 24px; background: #3AF9A2; color: #0B5640; }
+    .s2-p .iconc { width: 92px; height: 92px; background: #0B5640; color: #3AF9A2; }
+    #s2-p1 { top: 470px; } #s2-p2 { top: 610px; } #s2-p3 { top: 750px; }
+    #s2-panel { left: -400px; background: #018D38; }
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1920" data-height="1080">
+    <div class="bg"></div>
+    <div id="s2-cam" class="cam">
+      <div class="glow" style="left:500px;top:60px"></div>
+      <div id="s2-browser">
+        <div id="s2-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="tab">Observatorio de Políticas Públicas de Antioquia</span></div>
+        <div id="s2-nav"><img src="assets/img/logo_gobernacion.png" alt="Gobernación de Antioquia" />
+          <div class="links"><span class="on">Inicio</span><span>Políticas públicas</span><span>Mapa territorial</span><span>Metodología</span></div></div>
+        <div id="s2-hero">
+          <div id="s2-over">— GOBERNACIÓN DE ANTIOQUIA</div>
+          <div id="s2-title"><span class="w">Observatorio</span> <span class="w">de</span> <span class="w">Políticas</span><br /><span class="w">Públicas</span> <span class="w">de</span> <span class="w">Antioquia</span></div>
+          <div id="s2-search"><span>Busca un indicador, una política o un tema</span><b>Buscar</b></div>
+        </div>
+        <div id="s2-logocard" class="card"><img src="assets/img/logo_gobernacion.png" alt="" /></div>
+        <div id="s2-stats" class="card">
+          <div class="st"><div class="n" id="s2-n1">0</div><div class="l">Políticas públicas vigentes</div></div>
+          <div class="st"><div class="n" id="s2-n2">0</div><div class="l">Temas</div></div>
+          <div class="st"><div class="n" id="s2-n3">0</div><div class="l">Tableros de datos</div></div>
+          <div class="st"><div class="n" id="s2-n4">0</div><div class="l">Indicadores</div></div>
+        </div>
+      </div>
+      <h2 id="s2-head" class="h"><span class="w">Un</span> <span class="w">solo</span><br /><span class="w mint">lugar.</span></h2>
+      <div id="s2-p1" class="card pill s2-p"><div class="iconc"><i data-icon="search"></i></div>Consultar</div>
+      <div id="s2-p2" class="card pill s2-p"><div class="iconc"><i data-icon="git-compare-arrows"></i></div>Comparar</div>
+      <div id="s2-p3" class="card pill s2-p"><div class="iconc"><i data-icon="chart-column"></i></div>Analizar</div>
+    </div>
+    <div id="s2-chaos">
+      <div id="s2-k1" data-layout-ignore class="doc s2-k" style="left:160px;top:180px"><span class="doc-k">PDF</span><b style="width:80%"></b><b style="width:60%"></b></div>
+      <div id="s2-k2" data-layout-ignore class="doc s2-k tall" style="left:640px;top:520px"><span class="doc-k">XLSX</span><b style="width:90%"></b><b style="width:90%"></b><b style="width:60%"></b></div>
+      <div id="s2-k3" data-layout-ignore class="doc s2-k" style="left:1080px;top:200px"><span class="doc-k">DOC</span><b style="width:70%"></b><b style="width:85%"></b></div>
+      <div id="s2-k4" data-layout-ignore class="doc s2-k" style="left:1480px;top:620px"><span class="doc-k">ACTA</span><b style="width:75%"></b><b style="width:55%"></b></div>
+      <div id="s2-k5" data-layout-ignore class="doc s2-k" style="left:260px;top:640px"><span class="doc-k">TABLA</span><b style="width:65%"></b><b style="width:80%"></b></div>
+      <div id="s2-k6" data-layout-ignore class="doc s2-k" style="left:1500px;top:150px"><span class="doc-k">PDF</span><b style="width:85%"></b><b style="width:50%"></b></div>
+    </div>
+    <div id="s2-line" class="lightline"></div>
+    <div id="s2-panel" class="panel"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelectorAll(s);
+      // Línea de luz menta que barre y revela
+      tl.fromTo("#s2-line", { x: 0, opacity: 1 }, { x: 2080, duration: 0.7, ease: "power2.inOut" }, 0);
+      tl.to("#s2-line", { opacity: 0, duration: 0.1 }, 0.7);
+      // El caos encaja en la ventana del navegador
+      const ks = ["#s2-k1", "#s2-k2", "#s2-k3", "#s2-k4", "#s2-k5", "#s2-k6"];
+      const rot = [-14, 9, -6, 12, 7, -10];
+      ks.forEach((k, i) => {
+        tl.fromTo(k, { rotation: rot[i], x: 0, y: 0, scale: 1, opacity: 0.95 },
+          { x: 960 - (parseFloat(document.querySelector(k).style.left) + 135), y: 500 - (parseFloat(document.querySelector(k).style.top) + 90),
+            scale: 0.1, rotation: rot[i] * 3, opacity: 0, duration: 0.55, ease: "power3.in" }, 0.08 + i * 0.05);
+      });
+      tl.fromTo("#s2-browser", { scale: 0.35, rotationX: 30, opacity: 0, y: 60 }, { scale: 1, rotationX: 0, opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.4)" }, 0.45);
+      // Cámara: push-in
+      tl.fromTo("#s2-cam", { scale: 1, x: 0 }, { scale: 1.06, x: 10, duration: 7.0, ease: "none" }, 0);
+      // Título palabra por palabra (sincronizado con la voz)
+      const tt = [1.02, 1.7, 1.84, 2.46, 2.9, 2.96];
+      q("#s2-title .w").forEach((w, i) => tl.fromTo(w, { y: 40, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, tt[i] - 0.08));
+      tl.fromTo(["#s2-over", "#s2-search"], { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", stagger: 0.5 }, 0.9);
+      tl.fromTo("#s2-logocard", { scale: 0.6, opacity: 0, rotation: 6 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(2)" }, 1.3);
+      tl.fromTo("#s2-stats", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.6)" }, 2.0);
+      [[1, 41], [2, 7], [3, 4], [4, 89]].forEach(([i, v]) => {
+        const el = document.getElementById("s2-n" + i); const o = { v: 0 };
+        tl.fromTo(o, { v: 0 }, { v: v, duration: 0.9, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(o.v); } }, 2.15 + i * 0.12);
+      });
+      // "un solo lugar": el navegador se va a la izquierda
+      tl.to("#s2-browser", { x: -470, y: 40, scale: 0.66, rotationY: 8, duration: 0.6, ease: "power3.inOut" }, 3.7);
+      q("#s2-head .w").forEach((w, i) => tl.fromTo(w, { y: 80, opacity: 0, filter: "blur(14px)", scale: 0.8 }, { y: 0, opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.36, ease: "back.out(2)" }, 3.86 + i * 0.25));
+      // Consultar · Comparar · Analizar: rebotan
+      [["#s2-p1", 4.92, -3], ["#s2-p2", 5.72, 2], ["#s2-p3", 6.54, -2]].forEach(([s, t, r]) => {
+        tl.fromTo(s, { scale: 0, rotation: r * 6, opacity: 0, x: 120 }, { scale: 1, rotation: r, opacity: 1, x: 0, duration: 0.45, ease: "back.out(2.6)" }, t - 0.18);
+      });
+      // Barrido verde de salida
+      tl.fromTo("#s2-panel", { x: 2400, skewX: -14 }, { x: 0, skewX: -14, duration: 0.28, ease: "power3.in" }, 6.72);
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>

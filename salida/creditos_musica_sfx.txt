@@ -1,0 +1,19 @@
+CRÉDITOS DE AUDIO · Observatorio de Políticas Públicas de Antioquia · "¿Sabías que…?"
+
+MÚSICA
+"Upbeat Corporate" by Soundrider/Dope is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.
+Fuente: Jamendo, vía Openverse (api.openverse.org). 117,5 BPM, instrumental.
+
+EFECTOS DE SONIDO
+whoosh, whoosh-short, whoosh-cinematic, pop, click, click-soft, riser, sparkle, chime, impact-bass-1, impact-bass-2, ping
+Fuente: Pixabay (paquete de efectos incluido en HyperFrames / media-use). Licencia de contenido de Pixabay:
+uso comercial y no comercial sin atribución obligatoria — https://pixabay.com/service/license-summary/
+
+VOZ EN OFF
+Generada en ElevenLabs por el equipo del Observatorio (voz "El Faraon - Full, Clear, Mellow").
+
+ÍCONOS
+Lucide (https://lucide.dev), licencia ISC.
+
+TIPOGRAFÍA
+Poppins (Indian Type Foundry), SIL Open Font License 1.1, vía Fontsource.

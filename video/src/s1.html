@@ -1,0 +1,92 @@
+<template>
+  <style>
+    /*SHARED*/
+    #s1-wallwrap { position: absolute; inset: 0; }
+    #s1-tag { left: 50%; top: 150px; font-size: 64px; margin-left: -260px; }
+    #s1-num { position: absolute; left: 0; right: 0; top: 285px; text-align: center; font-weight: 900; font-size: 400px;
+      line-height: 1; letter-spacing: -0.05em; color: #fff; font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 80px rgba(58,249,162,.35); }
+    #s1-label { position: absolute; left: 0; right: 0; top: 705px; text-align: center; font-weight: 800; font-size: 76px; letter-spacing: -0.03em; }
+    #s1-h { position: absolute; left: 200px; top: 150px; font-size: 104px; }
+    .s1-c { position: absolute; display: flex; align-items: center; gap: 28px; padding: 28px 46px 28px 28px; }
+    .s1-c .iconc { width: 108px; height: 108px; }
+    .s1-c span { font-weight: 800; font-size: 58px; letter-spacing: -0.03em; }
+    #s1-c1 { left: 220px; top: 520px; }
+    #s1-c2 { left: 800px; top: 610px; }
+    #s1-c3 { left: 1250px; top: 450px; }
+    .s1-d { position: absolute; width: 260px; }
+    #s1-shade { position: absolute; inset: 0; background: radial-gradient(70% 70% at 50% 50%, rgba(8,67,47,.0) 0%, rgba(8,67,47,.75) 100%); }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080">
+    <div class="bg"></div>
+    <div id="s1-cam" class="cam">
+      <div id="s1-wallwrap"><!--WALL:s1:8:9--></div>
+      <div id="s1-shade"></div>
+      <div class="glow" style="left:510px;top:90px"></div>
+
+      <div id="s1-tag" class="tag">¿Sabías que…?</div>
+      <div id="s1-num">0</div>
+      <div id="s1-label"><span class="w">políticas</span> <span class="w">públicas</span> <span class="w mint">vigentes</span></div>
+
+      <h2 id="s1-h" class="h"><span class="w">Pero</span> <span class="w">su</span> <span class="w">información</span><br /><span class="w">estaba</span> <span class="w mint">dispersa.</span></h2>
+
+      <div id="s1-d1" data-layout-ignore class="doc s1-d" style="left:120px;top:780px"><span class="doc-k">PDF</span><b style="width:80%"></b><b style="width:60%"></b><b style="width:70%"></b></div>
+      <div id="s1-d2" data-layout-ignore class="doc s1-d tall" style="left:1560px;top:700px"><span class="doc-k">XLSX</span><b style="width:90%"></b><b style="width:90%"></b><b style="width:90%"></b><b style="width:50%"></b></div>
+      <div id="s1-d3" data-layout-ignore class="doc s1-d" style="left:1180px;top:780px"><span class="doc-k">DOC</span><b style="width:70%"></b><b style="width:85%"></b></div>
+      <div id="s1-d4" data-layout-ignore class="doc s1-d" style="left:560px;top:420px"><span class="doc-k">ACTA</span><b style="width:75%"></b><b style="width:55%"></b></div>
+
+      <div id="s1-c1" class="card s1-c"><div class="iconc"><i data-icon="file-text"></i></div><span>Documentos</span></div>
+      <div id="s1-c2" class="card s1-c"><div class="iconc"><i data-icon="sheet"></i></div><span>Tablas</span></div>
+      <div id="s1-c3" class="card s1-c"><div class="iconc"><i data-icon="building-2"></i></div><span>Secretarías</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelectorAll(s);
+      // Cámara: push-in constante + leve deriva
+      tl.fromTo("#s1-cam", { scale: 1, x: 0, rotation: 0 }, { scale: 1.08, x: -30, rotation: 0.4, duration: 10.5, ease: "none" }, 0);
+      // Muro: columnas que pasan rápido (alternadas), acelera tras "Pero"
+      q("#s1-wall .wall-col").forEach((col, i) => {
+        const dir = i % 2 ? 1 : -1;
+        tl.fromTo(col, { y: dir * -120 }, { y: dir * 160, duration: 5.1, ease: "none" }, 0);
+        tl.to(col, { y: dir * 760, duration: 5.4, ease: "power1.in" }, 5.1);
+      });
+      tl.fromTo("#s1-wallwrap", { opacity: 0.55, scale: 1.0 }, { opacity: 0.55, scale: 1.0, duration: 0.01 }, 0);
+      tl.to("#s1-wallwrap", { opacity: 1, scale: 1.12, duration: 0.6, ease: "power3.out" }, 5.1);
+      tl.fromTo("#s1-shade", { opacity: 1 }, { opacity: 0.55, duration: 0.6 }, 5.1);
+
+      // ¿SABÍAS QUE…? etiqueta menta inclinada
+      tl.fromTo("#s1-tag", { scale: 0.55, rotation: -24, opacity: 1 }, { scale: 1, rotation: -6, opacity: 1, duration: 0.55, ease: "back.out(2.6)" }, 0.08);
+      tl.to("#s1-tag", { rotation: -3, duration: 1.2, ease: "sine.inOut" }, 0.7);
+      // 41 con conteo + rebote
+      tl.fromTo("#s1-num", { scale: 0.3, opacity: 0, filter: "blur(18px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "back.out(2)" }, 1.25);
+      const n = { v: 0 }; const numEl = document.getElementById("s1-num");
+      tl.fromTo(n, { v: 0 }, { v: 41, duration: 1.6, ease: "power2.out", onUpdate: () => { numEl.textContent = Math.round(n.v); } }, 1.4);
+      tl.fromTo("#s1-num", { scale: 1 }, { scale: 1.16, duration: 0.12, ease: "power2.out", immediateRender: false }, 3.0);
+      tl.to("#s1-num", { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.35)" }, 3.12);
+      // políticas públicas vigentes (palabra por palabra con motion blur)
+      [[0, 3.16], [1, 3.74], [2, 4.2]].forEach(([i, t]) => {
+        tl.fromTo(q("#s1-label .w")[i], { y: 60, opacity: 0, filter: "blur(14px)", scale: 0.8 }, { y: 0, opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.38, ease: "back.out(2)" }, t - 0.12);
+      });
+      // Salida del bloque 41
+      tl.to(["#s1-tag", "#s1-num", "#s1-label"], { y: -240, scale: 0.7, opacity: 0, filter: "blur(16px)", duration: 0.32, ease: "power3.in", stagger: 0.04 }, 4.85);
+
+      // Pero su información estaba dispersa.
+      const hw = q("#s1-h .w"); const ht = [5.16, 5.34, 5.44, 6.0, 6.34];
+      hw.forEach((w, i) => tl.fromTo(w, { x: -80, opacity: 0, filter: "blur(16px)" }, { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.34, ease: "power4.out" }, ht[i] - 0.1));
+      tl.to(hw[4], { keyframes: [{ rotation: -4, duration: 0.07 }, { rotation: 3, duration: 0.07 }, { rotation: -2, duration: 0.07 }, { rotation: 0, duration: 0.07 }] }, 6.6);
+
+      // Documentos · Tablas · Secretarías: caen en 3D, giran y rebotan
+      [["#s1-c1", 7.4, -7], ["#s1-c2", 8.38, 5], ["#s1-c3", 9.04, -4]].forEach(([sel, t, r]) => {
+        tl.fromTo(sel, { y: -900, rotation: r * 5, rotationX: 60, opacity: 1 }, { y: 0, rotation: r, rotationX: 0, duration: 0.55, ease: "back.out(1.5)" }, t - 0.42);
+      });
+      [["#s1-d1", 7.2, 14], ["#s1-d4", 7.7, -18], ["#s1-d3", 8.5, 10], ["#s1-d2", 9.1, -12]].forEach(([sel, t, r]) => {
+        tl.fromTo(sel, { y: -1100, rotation: r * 4, opacity: 0.9 }, { y: 0, rotation: r, duration: 0.6, ease: "bounce.out" }, t - 0.4);
+      });
+      // Pre-transición: todo tiembla y se desordena
+      tl.to(["#s1-c1", "#s1-c2", "#s1-c3", "#s1-h"], { x: (i) => [-20, 25, -15, 10][i], rotation: (i) => [-11, 9, -8, -2][i], duration: 0.5, ease: "power2.in" }, 9.95);
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,134 @@
+<template>
+  <style>
+    
+/* Identidad: Manual de Identidad Visual — Gobernación de Antioquia.
+   Poppins; #0B5640 / #08432f fondo, #018D38 botones y barras, menta #3AF9A2 acento, blanco.
+   Contenedores blancos con una esquina recta (abajo-izquierda), íconos de línea en círculos menta. */
+@font-face { font-family: "Poppins"; font-weight: 400; src: url("assets/fonts/poppins-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 500; src: url("assets/fonts/poppins-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 600; src: url("assets/fonts/poppins-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 700; src: url("assets/fonts/poppins-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 800; src: url("assets/fonts/poppins-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 900; src: url("assets/fonts/poppins-latin-900-normal.woff2") format("woff2"); }
+#root {
+  --vo: #0B5640; --vo2: #08432f; --v: #018D38; --menta: #3AF9A2; --blanco: #ffffff;
+  --az: #3561AB; --azc: #8FCAF0; --na: #F28E18; --mo: #8B4A97; --do: #B0942B;
+  --rojo: #c0392b; --amarillo: #F2C318; --tx: #0B5640;
+  position: absolute; inset: 0; overflow: hidden;
+  font-family: "Poppins", sans-serif; color: #fff;
+}
+#root * { box-sizing: border-box; margin: 0; padding: 0; }
+.bg { position: absolute; inset: 0;
+  background: radial-gradient(120% 90% at 30% 20%, #0f6a4f 0%, #0B5640 45%, #08432f 100%); }
+.bg::after { content: ""; position: absolute; inset: 0; opacity: .18;
+  background-image: radial-gradient(rgba(58,249,162,.55) 1.2px, transparent 1.6px); background-size: 36px 36px; }
+.glow { position: absolute; width: 900px; height: 900px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,249,162,.22) 0%, rgba(58,249,162,0) 65%); pointer-events: none; }
+.cam { position: absolute; inset: 0; transform-origin: 50% 50%; }
+.mint { color: var(--menta); }
+.w { display: inline-block; will-change: transform, filter; }
+.h { font-weight: 900; line-height: 1.02; letter-spacing: -0.035em; color: #fff; }
+.tag { position: absolute; display: inline-block; background: var(--menta); color: var(--vo);
+  font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase;
+  padding: 10px 30px 12px; border-radius: 18px 18px 18px 0;
+  box-shadow: 0 18px 40px rgba(0,0,0,.28), 0 0 60px rgba(58,249,162,.35); }
+.card { position: absolute; background: #fff; color: var(--vo);
+  border-radius: 28px 28px 28px 0; box-shadow: 0 30px 70px rgba(3,30,21,.38); }
+.iconc { display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  background: var(--menta); color: var(--vo); flex: none; }
+.iconc svg { width: 56%; height: 56%; stroke-width: 2.2; }
+.pill { display: inline-flex; align-items: center; gap: 18px; background: var(--v); color: #fff;
+  font-weight: 700; border-radius: 999px; padding: 18px 40px; box-shadow: 0 16px 40px rgba(0,0,0,.25); }
+.lightline { position: absolute; top: -120px; width: 16px; height: 1320px; background: var(--menta);
+  border-radius: 8px; box-shadow: 0 0 40px 10px rgba(58,249,162,.75), 0 0 140px 40px rgba(58,249,162,.35); }
+.panel { position: absolute; top: -200px; height: 1480px; width: 2800px; transform-origin: 50% 50%; }
+/* muro de documentos */
+.wall { position: absolute; left: -260px; top: -420px; width: 2440px; height: 1920px; display: flex; gap: 34px;
+  transform: rotate(-9deg); }
+.wall-col { display: flex; flex-direction: column; gap: 30px; width: 300px; flex: none; }
+.doc { background: #fff; border-radius: 18px 18px 18px 0; height: 170px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; }
+.doc.tall { height: 250px; }
+.doc b { display: block; height: 12px; border-radius: 6px; background: #0B5640; opacity: .35; }
+.doc-k { align-self: flex-start; font-size: 18px; font-weight: 800; color: var(--vo); background: var(--menta); padding: 2px 12px; border-radius: 8px; margin-bottom: 4px; }
+.cursor { position: absolute; width: 64px; height: 64px; color: #fff; filter: drop-shadow(0 6px 10px rgba(0,0,0,.4)); }
+.cursor svg { width: 100%; height: 100%; fill: #0B5640; stroke: #fff; stroke-width: 1.6; }
+.ripple { position: absolute; width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--menta); }
+
+    #s3-panel { left: -400px; background: #018D38; }
+    #s3-tag { left: 200px; top: 120px; font-size: 48px; }
+    #s3-h { position: absolute; left: 200px; top: 230px; font-size: 104px; }
+    #s3-seven { position: absolute; left: 1380px; top: 120px; width: 300px; height: 300px; border-radius: 50%; background: #3AF9A2;
+      color: #0B5640; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 0 90px rgba(58,249,162,.45); }
+    #s3-seven b { font-size: 190px; font-weight: 900; line-height: .9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+    #s3-seven span { font-size: 40px; font-weight: 800; margin-top: -4px; }
+    .s3-it { position: absolute; top: 560px; width: 200px; height: 260px; }
+    .s3-card { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 20px 10px; }
+    .s3-card .iconc { width: 104px; height: 104px; }
+    .s3-card span { font-size: 27px; font-weight: 800; letter-spacing: -0.02em; }
+    .s3-bub { position: absolute; left: 0; top: 0; width: 200px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .s3-bub .ring { width: 186px; height: 186px; border-radius: 50%; background: #fff; border: 9px solid var(--c); display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 24px 50px rgba(2,25,17,.35); }
+    .s3-bub .iconc { width: 120px; height: 120px; }
+    .s3-bub span { font-size: 29px; font-weight: 800; color: #fff; letter-spacing: -0.02em; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+    <div class="bg"></div>
+    <div id="s3-cam" class="cam">
+      <div class="glow" style="left:1080px;top:-180px"></div>
+      <div id="s3-tag" class="tag">¿Sabías que…?</div>
+      <h2 id="s3-h" class="h"><span class="w">Puedes</span> <span class="w">explorarlas</span><br /><span class="w">por</span> <span class="w mint">tema.</span></h2>
+      <div id="s3-seven"><b id="s3-n">0</b><span>temas</span></div>
+
+      <div class="s3-it" id="s3-i0" style="left:200px;--c:#018D38"><div class="card s3-card"><div class="iconc"><svg  data-icon="users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></svg></div><span>Poblaciones</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><svg  data-icon="users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></svg></div></div><span>Poblaciones</span></div></div>
+      <div class="s3-it" id="s3-i1" style="left:420px;--c:#3561AB"><div class="card s3-card"><div class="iconc"><svg  data-icon="graduation-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /> <path d="M22 10v6" /> <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg></div><span>Educación</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><svg  data-icon="graduation-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /> <path d="M22 10v6" /> <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg></div></div><span>Educación</span></div></div>
+      <div class="s3-it" id="s3-i2" style="left:640px;--c:#8B4A97"><div class="card s3-card"><div class="iconc"><svg  data-icon="palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" /> <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" /> <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" /> <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" /> <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" /></svg></div><span>Cultura</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><svg  data-icon="palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" /> <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" /> <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" /> <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" /> <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" /></svg></div></div><span>Cultura</span></div></div>
+      <div class="s3-it" id="s3-i3" style="left:860px;--c:#F28E18"><div class="card s3-card"><div class="iconc"><svg  data-icon="sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" /> <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" /> <path d="M5 21h14" /></svg></div><span>Economía</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><svg  data-icon="sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" /> <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" /> <path d="M5 21h14" /></svg></div></div><span>Economía</span></div></div>
+      <div class="s3-it" id="s3-i4" style="left:1080px;--c:#8FCAF0"><div class="card s3-card"><div class="iconc"><svg  data-icon="heart-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /> <path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /></svg></div><span>Salud</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><svg  data-icon="heart-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /> <path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /></svg></div></div><span>Salud</span></div></div>
+      <div class="s3-it" id="s3-i5" style="left:1300px;--c:#0B5640"><div class="card s3-card"><div class="iconc"><svg  data-icon="leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20" /> <path d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13" /></svg></div><span>Ambiente</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><svg  data-icon="leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20" /> <path d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13" /></svg></div></div><span>Ambiente</span></div></div>
+      <div class="s3-it" id="s3-i6" style="left:1520px;--c:#B0942B"><div class="card s3-card"><div class="iconc"><svg  data-icon="landmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18v-7" /> <path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z" /> <path d="M14 18v-7" /> <path d="M18 18v-7" /> <path d="M3 22h18" /> <path d="M6 18v-7" /></svg></div><span>Gobernanza</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><svg  data-icon="landmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18v-7" /> <path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z" /> <path d="M14 18v-7" /> <path d="M18 18v-7" /> <path d="M3 22h18" /> <path d="M6 18v-7" /></svg></div></div><span>Gobernanza</span></div></div>
+    </div>
+    <div id="s3-panel" class="panel"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelectorAll(s);
+      tl.fromTo("#s3-panel", { x: 0, skewX: -14 }, { x: -2900, skewX: -14, duration: 0.45, ease: "power3.out" }, 0);
+      tl.fromTo("#s3-cam", { scale: 1.04, y: 0 }, { scale: 1.1, y: -20, duration: 6, ease: "none" }, 0);
+      tl.fromTo("#s3-tag", { scale: 0, rotation: -25 }, { scale: 1, rotation: -5, duration: 0.5, ease: "back.out(2.6)" }, 0.08);
+      const ht = [1.16, 1.44, 2.1, 2.3];
+      q("#s3-h .w").forEach((w, i) => tl.fromTo(w, { y: 70, opacity: 0, filter: "blur(14px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.34, ease: "back.out(1.8)" }, ht[i] - 0.1));
+      // 7 gigante con conteo y rebote
+      tl.fromTo("#s3-seven", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.4)" }, 2.9);
+      const n = { v: 0 }; const el = document.getElementById("s3-n");
+      tl.fromTo(n, { v: 0 }, { v: 7, duration: 0.5, ease: "power1.out", onUpdate: () => { el.textContent = Math.round(n.v); } }, 3.0);
+      tl.to("#s3-seven", { scale: 1.12, duration: 0.1, ease: "power2.out" }, 3.5);
+      tl.to("#s3-seven", { scale: 1, duration: 0.6, ease: "elastic.out(1,0.35)" }, 3.6);
+      // Tarjetas caen en 3D, giran y rebotan
+      const rz = [-18, 12, -9, 16, -14, 10, -20];
+      for (let i = 0; i < 7; i++) {
+        const card = `#s3-i${i} .s3-card`;
+        tl.fromTo(card, { y: -900, rotation: rz[i], rotationY: 70, opacity: 1 }, { y: 0, rotation: rz[i] / 6, rotationY: 0, duration: 0.6, ease: "back.out(1.7)" }, 3.05 + i * 0.08);
+        // se agrupan en burbujas
+        tl.to(card, { scale: 0.2, opacity: 0, rotation: 0, duration: 0.28, ease: "power3.in" }, 3.95 + i * 0.04);
+        tl.fromTo(`#s3-i${i} .s3-bub`, { scale: 0, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: [20, -10, -35, -45, -35, -10, 20][i], duration: 0.5, ease: "back.out(2.4)" }, 4.15 + i * 0.04);
+      }
+      // Énfasis: Poblaciones y Gobernanza
+      [["#s3-i0 .ring", 4.22], ["#s3-i6 .ring", 5.08]].forEach(([s, t]) => {
+        tl.to(s, { scale: 1.18, boxShadow: "0 0 70px rgba(58,249,162,.9)", duration: 0.18, ease: "power2.out" }, t);
+        tl.to(s, { scale: 1, boxShadow: "0 24px 50px rgba(2,25,17,.35)", duration: 0.5, ease: "elastic.out(1,0.4)" }, t + 0.18);
+      });
+      // salida
+      tl.to(".s3-bub", { y: "-=40", opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power2.in", stagger: 0.02 }, 5.7);
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,99 @@
+<template>
+  <style>
+    /*SHARED*/
+    #s5-panel { left: -400px; background: #018D38; }
+    #s5-h { position: absolute; left: 200px; top: 140px; font-size: 112px; }
+    #s5-mapw { position: absolute; left: 960px; top: 90px; width: 800px; height: 800px; }
+    #s5-map { width: 100%; height: 100%; overflow: visible; }
+    #s5-map .munis path { stroke: rgba(255,255,255,.22); stroke-width: .5; }
+    #s5-map .sr { fill: #136f53; }
+    #s5-map .sr-lines path { fill: none; stroke: #3AF9A2; stroke-width: 1.3; stroke-opacity: .6; stroke-linejoin: round; }
+    #s5-map .border path { fill: none; stroke: #ffffff; stroke-width: 2.2; stroke-linejoin: round; }
+    .s5-lab { position: absolute; width: 0; height: 0; } .s5-lab span { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); font-size: 23px; font-weight: 800; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,.6); white-space: nowrap; transform-origin: 50% 50%; }
+    #s5-count { left: 200px; top: 520px; width: 620px; height: 300px; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 0 44px; }
+    #s5-count .row { display: flex; align-items: baseline; gap: 20px; }
+    #s5-count b { font-size: 112px; font-weight: 900; color: #018D38; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; min-width: 240px; }
+    #s5-count span { font-size: 44px; font-weight: 800; }
+    #s5-count .row2 b { font-size: 112px; min-width: 240px; }
+    #s5-cmp { left: 200px; top: 400px; width: 600px; height: 470px; overflow: hidden; }
+    #s5-cmp img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    #s5-cmp .in { padding: 22px 36px; }
+    #s5-cmp .t { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; }
+    #s5-cmp .t em { font-style: normal; color: #018D38; }
+    #s5-cmp .bl { margin-top: 16px; font-size: 20px; font-weight: 700; color: #4b5d55; }
+    #s5-cmp .tr { margin-top: 6px; height: 22px; border-radius: 11px; background: #e3ebe6; overflow: hidden; }
+    #s5-cmp .fi { height: 100%; border-radius: 11px; transform-origin: 0 50%; }
+  </style>
+  <div id="root" data-composition-id="s5" data-width="1920" data-height="1080">
+    <div class="bg"></div>
+    <div id="s5-cam" class="cam">
+      <div class="glow" style="left:900px;top:60px"></div>
+      <div id="s5-mapw">
+        <i data-map="full" id="s5-map"></i>
+        <div data-layout-ignore class="s5-lab" style="left:513px;top:270px"><span>Bajo Cauca</span></div>
+        <div data-layout-ignore class="s5-lab" style="left:146px;top:272px"><span>Urabá</span></div>
+        <div data-layout-ignore class="s5-lab" style="left:379px;top:422px"><span>Norte</span></div>
+        <div data-layout-ignore class="s5-lab" style="left:553px;top:438px"><span>Nordeste</span></div>
+        <div data-layout-ignore class="s5-lab" style="left:267px;top:490px"><span>Occidente</span></div>
+        <div data-layout-ignore class="s5-lab" style="left:639px;top:512px"><span>Magdalena Medio</span></div>
+        <div data-layout-ignore class="s5-lab" style="left:391px;top:575px"><span>Valle de Aburrá</span></div>
+        <div data-layout-ignore class="s5-lab" style="left:286px;top:657px"><span>Suroeste</span></div>
+        <div data-layout-ignore class="s5-lab" style="left:477px;top:657px"><span>Oriente</span></div>
+      </div>
+      <div id="s5-shade" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,67,47,.92) 0%,rgba(8,67,47,.75) 30%,rgba(8,67,47,0) 55%);opacity:0"></div>
+      <h2 id="s5-h" class="h"><span class="w">¿Y</span> <span class="w">tu</span><br /><span class="w mint">subregión?</span></h2>
+      <div id="s5-count" class="card">
+        <div class="row"><b id="s5-n1">0</b><span>municipios</span></div>
+        <div class="row row2"><b id="s5-n2">0</b><span>subregiones</span></div>
+      </div>
+      <div id="s5-cmp" class="card"><img src="assets/fotos/guatape.jpg" alt="Guatapé, Oriente antioqueño" />
+        <div class="in"><div class="t"><em>Oriente</em> vs. todo Antioquia</div>
+          <div class="bl">Oriente</div><div class="tr"><div class="fi" id="s5-b1" style="width:62%;background:#3AF9A2"></div></div>
+          <div class="bl">Antioquia</div><div class="tr"><div class="fi" id="s5-b2" style="width:78%;background:#018D38"></div></div></div></div>
+    </div>
+    <div id="s5-panel" class="panel"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelectorAll(s);
+      tl.fromTo("#s5-panel", { x: 0, skewX: -14 }, { x: -2900, skewX: -14, duration: 0.45, ease: "power3.out" }, 0);
+      tl.fromTo("#s5-cam", { scale: 1.0 }, { scale: 1.04, duration: 6.25, ease: "none" }, 0);
+      const ht = [0.22, 0.34, 0.48];
+      q("#s5-h .w").forEach((w, i) => tl.fromTo(w, { y: 70, opacity: 0, filter: "blur(14px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.34, ease: "back.out(1.8)" }, ht[i] - 0.06));
+      // Mapa entra: subregiones aparecen desde el centro
+      const ids = ["valle-aburra", "oriente", "suroeste", "occidente", "norte", "nordeste", "magdalena-medio", "bajo-cauca", "uraba"];
+      tl.fromTo("#s5-mapw", { scale: 0.7, rotation: -6, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.8, ease: "back.out(1.5)" }, 0.25);
+      ids.forEach((id, i) => tl.fromTo(`#sr-${id}`, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.3 + i * 0.07));
+      tl.fromTo("#s5-map .sr-lines, #s5-map .border", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.9);
+      // 125 municipios · 9 subregiones
+      tl.fromTo("#s5-count", { x: -120, opacity: 0, rotation: -4 }, { x: 0, opacity: 1, rotation: 0, duration: 0.45, ease: "back.out(1.8)" }, 1.3);
+      const a = { v: 0 }, e1 = document.getElementById("s5-n1");
+      tl.fromTo(a, { v: 0 }, { v: 125, duration: 1.1, ease: "power2.out", onUpdate: () => { e1.textContent = Math.round(a.v); } }, 1.5);
+      const b = { v: 0 }, e2 = document.getElementById("s5-n2");
+      tl.fromTo(b, { v: 0 }, { v: 9, duration: 0.5, ease: "power1.out", immediateRender: false, onUpdate: () => { e2.textContent = Math.round(b.v); } }, 3.3);
+      // Las 9 subregiones se iluminan una a una
+      const tones = ["#cdeedd", "#2f9e74", "#4fb58a", "#3d8f6f", "#5cbf93", "#2a8564", "#47a982", "#1d7a59", "#67c69b"];
+      tl.fromTo(".s5-lab", { opacity: 0, scale: 0.4 }, { opacity: 0, scale: 0.4, duration: 0.01 }, 0);
+      ids.forEach((id, i) => {
+        const t = 3.3 + i * 0.1;
+        tl.to(`#sr-${id}`, { fill: "#3AF9A2", duration: 0.12 }, t);
+        tl.to(`#sr-${id}`, { fill: tones[i], duration: 0.35 }, t + 0.14);
+      });
+      tl.to(".s5-lab", { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.5)", stagger: 0.1 }, 3.3);
+      // Push-in a Oriente y comparación con todo Antioquia
+      tl.to("#s5-count", { x: -700, opacity: 0, duration: 0.35, ease: "power3.in" }, 4.4);
+      tl.to("#s5-mapw", { scale: 1.9, x: -170, y: -415, duration: 0.9, ease: "power3.inOut" }, 4.5);
+      ids.filter((x) => x !== "oriente").forEach((id) => tl.to(`#sr-${id}`, { opacity: 0.35, duration: 0.4 }, 4.6));
+      tl.to("#sr-oriente", { fill: "#3AF9A2", duration: 0.3 }, 4.7);
+      tl.to(".s5-lab", { opacity: 0, duration: 0.2 }, 4.5);
+      tl.to("#s5-shade", { opacity: 1, duration: 0.6 }, 4.6);
+      tl.fromTo("#s5-cmp", { y: 500, rotation: 6, opacity: 0 }, { y: 0, rotation: -2, opacity: 1, duration: 0.55, ease: "back.out(1.5)" }, 4.65);
+      tl.fromTo("#s5-b1", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 5.0);
+      tl.fromTo("#s5-b2", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 5.55);
+      tl.to("#sr-oriente", { scale: 1.0, duration: 0.01 }, 5.6);
+      tl.to("#s5-cam", { scale: 1.12, filter: "blur(6px)", opacity: 0.0, duration: 0.25, ease: "power2.in" }, 6.25);
+      window.__timelines["s5"] = tl;
+    })();
+  </script>
+</template>

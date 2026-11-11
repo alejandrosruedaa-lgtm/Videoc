@@ -1,0 +1,80 @@
+<template>
+  <style>
+    /*SHARED*/
+    #s6-h { position: absolute; left: 0; right: 0; top: 110px; text-align: center; font-size: 104px; }
+    #s6-sub { position: absolute; left: 0; right: 0; top: 245px; text-align: center; font-size: 42px; font-weight: 600; color: #d9f7e8; }
+    #s6-card { left: 330px; top: 350px; width: 1260px; height: 480px; display: flex; align-items: center; padding: 0 60px; gap: 60px; }
+    #s6-stat { width: 330px; display: flex; flex-direction: column; align-items: center; gap: 22px; flex: none; }
+    #s6-lamp { width: 240px; height: 240px; border-radius: 50%; background: #c0392b; display: flex; align-items: center; justify-content: center; color: #fff;
+      box-shadow: 0 0 0 14px rgba(192,57,43,.15), 0 0 80px rgba(192,57,43,.5); }
+    #s6-lamp svg { width: 130px; height: 130px; stroke-width: 3; }
+    #s6-lbls { position: relative; width: 330px; height: 50px; }
+    #s6-lbls div { position: absolute; left: 0; right: 0; text-align: center; font-size: 40px; font-weight: 800; letter-spacing: -0.02em; }
+    #s6-dots { display: flex; gap: 14px; }
+    #s6-dots i { width: 26px; height: 26px; border-radius: 50%; display: block; opacity: .25; }
+    #s6-slots { display: flex; gap: 34px; }
+    .s6-slot { width: 240px; height: 300px; border-radius: 24px 24px 24px 0; border: 4px dashed #c3d3ca; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; position: relative; }
+    .s6-slot span { font-size: 30px; font-weight: 800; text-align: center; line-height: 1.15; padding: 0 12px; letter-spacing: -0.02em; }
+    .s6-slot .iconc { width: 130px; height: 130px; }
+    .s6-slot .ok { position: absolute; right: -14px; top: -14px; width: 50px; height: 50px; border-radius: 50%; background: #018D38; color: #fff; display: flex; align-items: center; justify-content: center; }
+    .s6-slot .ok svg { width: 30px; height: 30px; stroke-width: 3.4; }
+  </style>
+  <div id="root" data-composition-id="s6" data-width="1920" data-height="1080">
+    <div class="bg"></div>
+    <div id="s6-cam" class="cam">
+      <div class="glow" style="left:510px;top:120px"></div>
+      <h2 id="s6-h" class="h"><span class="w">Un</span> <span class="w mint">semáforo</span></h2>
+      <div id="s6-sub"><span class="w">¿Tiene</span> <span class="w">completos</span> <span class="w">sus</span> <span class="w">tres</span> <span class="w">instrumentos?</span></div>
+      <div id="s6-card" class="card">
+        <div id="s6-stat">
+          <div id="s6-lamp"><i data-icon="check" id="s6-check"></i></div>
+          <div id="s6-lbls"><div id="s6-l0" style="color:#c0392b">En riesgo</div><div id="s6-l1" style="color:#F28E18">Incompleta</div><div id="s6-l2" style="color:#b8900a">Consolidando</div><div id="s6-l3" style="color:#018D38">Completa</div></div>
+          <div id="s6-dots"><i style="background:#c0392b"></i><i style="background:#F28E18"></i><i style="background:#F2C318"></i><i style="background:#018D38"></i></div>
+        </div>
+        <div id="s6-slots">
+          <div class="s6-slot" id="s6-s0"><div class="iconc"><i data-icon="compass"></i></div><span>Plan estratégico</span><div class="ok"><i data-icon="check"></i></div></div>
+          <div class="s6-slot" id="s6-s1"><div class="iconc"><i data-icon="clipboard-list"></i></div><span>Plan de acción</span><div class="ok"><i data-icon="check"></i></div></div>
+          <div class="s6-slot" id="s6-s2"><div class="iconc"><i data-icon="gauge"></i></div><span>Batería de indicadores</span><div class="ok"><i data-icon="check"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelectorAll(s);
+      tl.fromTo("#s6-cam", { scale: 1.02, y: 0 }, { scale: 1.08, y: -10, duration: 4.3, ease: "none" }, 0);
+      q("#s6-h .w").forEach((w, i) => tl.fromTo(w, { y: 70, opacity: 0, filter: "blur(14px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.34, ease: "back.out(1.8)" }, [0.06, 0.22][i]));
+      const st = [1.36, 2.38, 2.92, 3.16, 3.4];
+      q("#s6-sub .w").forEach((w, i) => tl.fromTo(w, { y: 30, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, st[i] - 0.06));
+      tl.fromTo("#s6-card", { y: 300, rotationX: 35, scale: 0.85, opacity: 0 }, { y: 0, rotationX: 0, scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.4)" }, 0.15);
+      // Estado inicial
+      tl.fromTo(["#s6-l1", "#s6-l2", "#s6-l3"], { opacity: 0, y: 20 }, { opacity: 0, y: 20, duration: 0.01 }, 0);
+      tl.fromTo("#s6-check", { scale: 0, rotation: -40 }, { scale: 0, rotation: -40, duration: 0.01 }, 0);
+      tl.fromTo(".s6-slot .iconc, .s6-slot .ok", { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+      tl.fromTo("#s6-dots i", { opacity: 0.25 }, { opacity: 0.25, duration: 0.01 }, 0);
+      tl.to("#s6-dots i:nth-child(1)", { opacity: 1, duration: 0.2 }, 0.6);
+      // Cada instrumento entra en su espacio y el semáforo avanza
+      const steps = [
+        { t: 1.55, col: "#F28E18", sh: "rgba(242,142,24,", from: "#s6-l0", to: "#s6-l1" },
+        { t: 2.4, col: "#F2C318", sh: "rgba(242,195,24,", from: "#s6-l1", to: "#s6-l2" },
+        { t: 3.25, col: "#018D38", sh: "rgba(1,141,56,", from: "#s6-l2", to: "#s6-l3" },
+      ];
+      steps.forEach((s, i) => {
+        const ic = `#s6-s${i} .iconc`;
+        tl.fromTo(ic, { opacity: 1, y: -620, x: (i - 1) * -260, scale: 1.8, rotation: -30 }, { opacity: 1, y: 0, x: 0, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.6)", immediateRender: false }, s.t - 0.4);
+        tl.to(`#s6-s${i}`, { borderColor: "#3AF9A2", borderStyle: "solid", duration: 0.1 }, s.t);
+        tl.fromTo(`#s6-s${i} .ok`, { opacity: 1, scale: 0 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, s.t + 0.05);
+        tl.to("#s6-lamp", { backgroundColor: s.col, boxShadow: `0 0 0 14px ${s.sh}.18), 0 0 90px ${s.sh}.55)`, duration: 0.2 }, s.t + 0.05);
+        tl.fromTo("#s6-lamp", { scale: 1 }, { keyframes: [{ scale: 1.12, duration: 0.1 }, { scale: 1, duration: 0.45, ease: "elastic.out(1,0.4)" }], immediateRender: false }, s.t + 0.05);
+        tl.to(s.from, { opacity: 0, y: -20, duration: 0.15 }, s.t + 0.05);
+        tl.to(s.to, { opacity: 1, y: 0, duration: 0.25, ease: "back.out(2)" }, s.t + 0.1);
+        tl.to(`#s6-dots i:nth-child(${i + 2})`, { opacity: 1, duration: 0.2 }, s.t + 0.05);
+      });
+      tl.to("#s6-check", { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, 3.45);
+      tl.to("#s6-card", { y: -40, scale: 0.94, opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power2.in" }, 4.05);
+      tl.to(["#s6-h", "#s6-sub"], { y: -60, opacity: 0, duration: 0.22, ease: "power2.in" }, 4.05);
+      window.__timelines["s6"] = tl;
+    })();
+  </script>
+</template>

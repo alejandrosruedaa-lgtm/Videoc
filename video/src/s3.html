@@ -1,0 +1,81 @@
+<template>
+  <style>
+    /*SHARED*/
+    #s3-panel { left: -400px; background: #018D38; }
+    #s3-tag { left: 200px; top: 120px; font-size: 48px; }
+    #s3-h { position: absolute; left: 200px; top: 230px; font-size: 104px; }
+    #s3-seven { position: absolute; left: 1380px; top: 120px; width: 300px; height: 300px; border-radius: 50%; background: #3AF9A2;
+      color: #0B5640; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 0 90px rgba(58,249,162,.45); }
+    #s3-seven b { font-size: 190px; font-weight: 900; line-height: .9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+    #s3-seven span { font-size: 40px; font-weight: 800; margin-top: -4px; }
+    .s3-it { position: absolute; top: 560px; width: 200px; height: 260px; }
+    .s3-card { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 20px 10px; }
+    .s3-card .iconc { width: 104px; height: 104px; }
+    .s3-card span { font-size: 27px; font-weight: 800; letter-spacing: -0.02em; }
+    .s3-bub { position: absolute; left: 0; top: 0; width: 200px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .s3-bub .ring { width: 186px; height: 186px; border-radius: 50%; background: #fff; border: 9px solid var(--c); display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 24px 50px rgba(2,25,17,.35); }
+    .s3-bub .iconc { width: 120px; height: 120px; }
+    .s3-bub span { font-size: 29px; font-weight: 800; color: #fff; letter-spacing: -0.02em; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+    <div class="bg"></div>
+    <div id="s3-cam" class="cam">
+      <div class="glow" style="left:1080px;top:-180px"></div>
+      <div id="s3-tag" class="tag">¿Sabías que…?</div>
+      <h2 id="s3-h" class="h"><span class="w">Puedes</span> <span class="w">explorarlas</span><br /><span class="w">por</span> <span class="w mint">tema.</span></h2>
+      <div id="s3-seven"><b id="s3-n">0</b><span>temas</span></div>
+
+      <div class="s3-it" id="s3-i0" style="left:200px;--c:#018D38"><div class="card s3-card"><div class="iconc"><i data-icon="users"></i></div><span>Poblaciones</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><i data-icon="users"></i></div></div><span>Poblaciones</span></div></div>
+      <div class="s3-it" id="s3-i1" style="left:420px;--c:#3561AB"><div class="card s3-card"><div class="iconc"><i data-icon="graduation-cap"></i></div><span>Educación</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><i data-icon="graduation-cap"></i></div></div><span>Educación</span></div></div>
+      <div class="s3-it" id="s3-i2" style="left:640px;--c:#8B4A97"><div class="card s3-card"><div class="iconc"><i data-icon="palette"></i></div><span>Cultura</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><i data-icon="palette"></i></div></div><span>Cultura</span></div></div>
+      <div class="s3-it" id="s3-i3" style="left:860px;--c:#F28E18"><div class="card s3-card"><div class="iconc"><i data-icon="sprout"></i></div><span>Economía</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><i data-icon="sprout"></i></div></div><span>Economía</span></div></div>
+      <div class="s3-it" id="s3-i4" style="left:1080px;--c:#8FCAF0"><div class="card s3-card"><div class="iconc"><i data-icon="heart-pulse"></i></div><span>Salud</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><i data-icon="heart-pulse"></i></div></div><span>Salud</span></div></div>
+      <div class="s3-it" id="s3-i5" style="left:1300px;--c:#0B5640"><div class="card s3-card"><div class="iconc"><i data-icon="leaf"></i></div><span>Ambiente</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><i data-icon="leaf"></i></div></div><span>Ambiente</span></div></div>
+      <div class="s3-it" id="s3-i6" style="left:1520px;--c:#B0942B"><div class="card s3-card"><div class="iconc"><i data-icon="landmark"></i></div><span>Gobernanza</span></div>
+        <div class="s3-bub"><div class="ring"><div class="iconc"><i data-icon="landmark"></i></div></div><span>Gobernanza</span></div></div>
+    </div>
+    <div id="s3-panel" class="panel"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelectorAll(s);
+      tl.fromTo("#s3-panel", { x: 0, skewX: -14 }, { x: -2900, skewX: -14, duration: 0.45, ease: "power3.out" }, 0);
+      tl.fromTo("#s3-cam", { scale: 1.04, y: 0 }, { scale: 1.1, y: -20, duration: 6, ease: "none" }, 0);
+      tl.fromTo("#s3-tag", { scale: 0, rotation: -25 }, { scale: 1, rotation: -5, duration: 0.5, ease: "back.out(2.6)" }, 0.08);
+      const ht = [1.16, 1.44, 2.1, 2.3];
+      q("#s3-h .w").forEach((w, i) => tl.fromTo(w, { y: 70, opacity: 0, filter: "blur(14px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.34, ease: "back.out(1.8)" }, ht[i] - 0.1));
+      // 7 gigante con conteo y rebote
+      tl.fromTo("#s3-seven", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.4)" }, 2.9);
+      const n = { v: 0 }; const el = document.getElementById("s3-n");
+      tl.fromTo(n, { v: 0 }, { v: 7, duration: 0.5, ease: "power1.out", onUpdate: () => { el.textContent = Math.round(n.v); } }, 3.0);
+      tl.to("#s3-seven", { scale: 1.12, duration: 0.1, ease: "power2.out" }, 3.5);
+      tl.to("#s3-seven", { scale: 1, duration: 0.6, ease: "elastic.out(1,0.35)" }, 3.6);
+      // Tarjetas caen en 3D, giran y rebotan
+      const rz = [-18, 12, -9, 16, -14, 10, -20];
+      for (let i = 0; i < 7; i++) {
+        const card = `#s3-i${i} .s3-card`;
+        tl.fromTo(card, { y: -900, rotation: rz[i], rotationY: 70, opacity: 1 }, { y: 0, rotation: rz[i] / 6, rotationY: 0, duration: 0.6, ease: "back.out(1.7)" }, 3.05 + i * 0.08);
+        // se agrupan en burbujas
+        tl.to(card, { scale: 0.2, opacity: 0, rotation: 0, duration: 0.28, ease: "power3.in" }, 3.95 + i * 0.04);
+        tl.fromTo(`#s3-i${i} .s3-bub`, { scale: 0, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: [20, -10, -35, -45, -35, -10, 20][i], duration: 0.5, ease: "back.out(2.4)" }, 4.15 + i * 0.04);
+      }
+      // Énfasis: Poblaciones y Gobernanza
+      [["#s3-i0 .ring", 4.22], ["#s3-i6 .ring", 5.08]].forEach(([s, t]) => {
+        tl.to(s, { scale: 1.18, boxShadow: "0 0 70px rgba(58,249,162,.9)", duration: 0.18, ease: "power2.out" }, t);
+        tl.to(s, { scale: 1, boxShadow: "0 24px 50px rgba(2,25,17,.35)", duration: 0.5, ease: "elastic.out(1,0.4)" }, t + 0.18);
+      });
+      // salida
+      tl.to(".s3-bub", { y: "-=40", opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power2.in", stagger: 0.02 }, 5.7);
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>
